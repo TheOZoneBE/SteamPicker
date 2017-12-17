@@ -4,7 +4,8 @@
   "description": "A tool to help game hoarders pick a game to play!",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --progress --colors"
   },
   "keywords": [
     "Steam",
@@ -13,5 +14,9 @@
     "Tool"
   ],
   "author": "Theo Dedeken",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "vue-material": "^1.0.0-beta-7",
+    "webpack": "^3.10.0"
+  }
 }
