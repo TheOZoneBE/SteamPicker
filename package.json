@@ -1,0 +1,17 @@
+{
+  "name": "steampicker",
+  "version": "1.0.0",
+  "description": "A tool to help game hoarders pick a game to play!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Steam",
+    "Game",
+    "Hoard",
+    "Tool"
+  ],
+  "author": "Theo Dedeken",
+  "license": "ISC"
+}
