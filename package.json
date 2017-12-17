@@ -2,7 +2,7 @@
   "name": "steampicker",
   "version": "1.0.0",
   "description": "A tool to help game hoarders pick a game to play!",
-  "main": "index.js",
+  "main": "src/index.js",
   "keywords": [
     "Steam",
     "Game",
@@ -10,17 +10,19 @@
     "Tool"
   ],
   "dependencies": {
+    "electron-builder": "^19.49.0",
+    "electron-webpack": "^1.11.0",
     "vue": "^2.5.11",
-    "vue-loader": "^13.6.0",
-    "vue-material": "^1.0.0-beta-7",
-    "webpack": "^3.10.0"
+    "vue-material": "^1.0.0-beta-7"
   },
   "author": "Theo Dedeken <theo.dedeken@telenet.be>",
   "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "electron-dev": "electron-webpack dev",
+    "compile": "electron-webpack"
   },
   "browserslist": [
     "> 1%",
@@ -34,6 +36,7 @@
     "babel-preset-stage-3": "^6.24.1",
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
+    "electron": "^1.7.9",
     "file-loader": "^1.1.4",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
@@ -41,5 +44,12 @@
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1"
+  },
+  "electronWebpack": {
+    "commonSourceDirectory": "src",  
+    "main": {
+      "sourceDirectory": "src",
+      "webpackConfig": "webpack.config.js"
+    }
   }
 }
