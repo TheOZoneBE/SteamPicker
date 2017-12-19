@@ -1,9 +1,8 @@
-//import Vue from 'vue'
-//import Test from './templates/Test.vue'
+import {app, BrowserWindow} from 'electron'
 
-const {app, BrowserWindow} = require('electron')
-const path = require('path')
-const url = require('url')
+
+
+const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -13,12 +12,20 @@ function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({width: 800, height: 600})
 
+  const index = isDevelopment
+    ? `http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`
+    : `file://${__dirname}/index.html`
+
   // and load the index.html of the app.
+  
+  win.loadURL(index);
+  /*
   win.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
+    //pathname: path.join(__dirname, 'index.html'),
+    pathname: path.join('html', 'index.html'),
     protocol: 'file:',
     slashes: true
-  }))
+  }))*/
 
   // Open the DevTools.
   win.webContents.openDevTools()
@@ -54,7 +61,3 @@ app.on('activate', () => {
   }
 })
 
-/*new Vue({
-    el: '#app',
-    render: (h) => h(Test)
-})*/
