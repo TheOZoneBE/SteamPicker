@@ -1,8 +1,13 @@
+import request from 'request'
+
 export function getJSON(url) {
     return new Promise((resolve, reject) => {
-      fetch(url, {mode: 'no-cors'})
-        .then(response => response.json())
-        .then(json => resolve(json))
-        .catch(ex => reject(ex));
-    });
+        request.get(url, (error,response, body) => {
+            if (response && response.statusCode == 200){
+                resolve(body)
+            }else{
+                reject(error)
+            }
+        });
+    })
 }
