@@ -4,9 +4,9 @@ export function getJSON(url) {
     return new Promise((resolve, reject) => {
         request.get(url, (error,response, body) => {
             if (response && response.statusCode == 200){
-                resolve(body)
+                resolve(JSON.parse(body));
             }else{
-                reject(error)
+                reject(error);
             }
         });
     })
