@@ -1,11 +1,29 @@
 <template>
     <div class="page-container" id="game_list">
-        <GameTile 
-            v-for="game in list.games"
-            v-bind:game="game"
-            v-bind:key="game.appid">
-        </GameTile>
-        <md-button md-raised v-on:click="update">Update</md-button>
+        <md-app>
+            <md-app-toolbar class="md-primary">
+                <span class="md-title">SteamPicker</span>
+                <md-button md-raised v-on:click="update">Refresh Game Data</md-button>
+            </md-app-toolbar>
+            <md-app-content>
+                <md-tabs md-alignment="centered">            
+                    <md-tab id="filters" md-label="Filters" class="md-layout md-gutter md-alignment-center">                    
+                        <GameFilter
+                            v-for="filter in filters"
+                            v-bind:filter="filter"
+                            v-bind:key="filter.id">
+                        </GameFilter>
+                    </md-tab>
+                    <md-tab id="results" md-label="Results" class="md-layout md-gutter md-alignment-center">
+                        <GameTile 
+                            v-for="game in list.games"
+                            v-bind:game="game"
+                            v-bind:key="game.appid">
+                        </GameTile>
+                    </md-tab>
+                </md-tabs >
+            </md-app-content>      
+        </md-app>
     </div>    
 </template>
 
@@ -19,7 +37,8 @@ export default  {
         return {
             list : {
                 games: []
-            }
+            },
+            filters : []
         }
         
     },
@@ -31,24 +50,18 @@ export default  {
             getJSON(url).then(
             response => {
                 this.list = response.response;
-                console.log(this.list);
             }, 
             err => {
                 console.log(err)
             });
         }
 
-    },
-    created: () => {
-        getJSON(url).then(
-            response => {
-                this.list = response;
-                console.log(this.list);
-            }, 
-            err => {
-                console.log(err)
-            });
     }
-
 }
 </script>
+
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
