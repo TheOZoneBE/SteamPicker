@@ -28,10 +28,9 @@
 </template>
 
 <script>
-import { getJSON } from '../util'
 import GameTile from './GameTile.vue'
 import GameFilterWrapper from './GameFilterWrapper.vue'
-var url = 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=E51495C5B4B623417D6B5FED7D044C23&steamid=76561198043928225&format=json&include_appinfo=1'
+import CacheManager from '../CacheManager.js'
 
 export default  {
     data() {
@@ -39,7 +38,8 @@ export default  {
             list : {
                 games: []
             },
-            filters : [{type: 'playtime', title: 'Playtime:', id:1}]
+            filters : [{type: 'playtime', title: 'Playtime:', id:1}],
+            cache : new CacheManager()
         }
         
     },
@@ -49,15 +49,8 @@ export default  {
     },
     methods: {
         update() {
-            getJSON(url).then(
-            response => {
-                this.list = response.response;
-            }, 
-            err => {
-                console.log(err)
-            });
+            this.cache.update();
         }
-
     }
 }
 </script>

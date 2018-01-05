@@ -1,4 +1,6 @@
 import request from 'request'
+import Stream from 'stream'
+import fs from 'fs'
 
 export function getJSON(url) {
     return new Promise((resolve, reject) => {
@@ -10,4 +12,8 @@ export function getJSON(url) {
             }
         });
     })
+}
+
+export function saveImage(url, path) {
+    request(url).pipe(fs.createWriteStream(path))
 }
