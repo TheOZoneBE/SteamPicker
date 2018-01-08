@@ -6,20 +6,39 @@ import { url } from './constants'
 
 
 
+import GameListContainer from './models/GameListContainer.js'
+
 export default class CacheManager {
-    constructor(gameList){
+    constructor(){
         this.cache = false;
-        this.gameList = gameList;
+        this.gameList = null;
+        this.startup();
     }
 
     startup(){
+        this.gameList = new GameListContainer();
         if (fs.existsSync(path.join(os.homedir(), '.steampicker/'))){
-            console.log("exists")
+            
+            this.initializeGames()
         }
         else {
             fs.mkdir(path.join(os.homedir(), '.steampicker'));
             this.cache = false;
         }
+    }
+
+    initializeGames(){
+        var games = JSON.parse(fs.readFileSync(path.join(os.homedir(), '.steampicker', 'games.json')));
+        var imgGames = []
+        for(let game of games.games){
+            game.img = "";
+            var img = fs.createReadStream(
+                path.join(os.homedir(), '.steampicker', String(game.appid), game.img_logo_url + '.jpg'),
+                { encoding: 'base64' })
+                .on('data', (data) => game.img += data);
+            imgGames.push(game)
+        }
+        this.gameList.setGames(imgGames);
     }
 
     update(){
