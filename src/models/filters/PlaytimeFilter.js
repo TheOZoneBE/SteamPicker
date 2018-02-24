@@ -1,9 +1,9 @@
 import GameFilter from './GameFilter.js'
 
 export default class PlaytimeFilter extends GameFilter {
-    constructor(){
-        super("playtime")
-        this.minutes = 0
+    constructor(gamelist){
+        super("playtime", gamelist)
+        this.time = 0
         this.operator = "greater"
         this.timeunit = "minutes"
     }
@@ -32,4 +32,6 @@ export default class PlaytimeFilter extends GameFilter {
 
         }   
     }
+
+
 }

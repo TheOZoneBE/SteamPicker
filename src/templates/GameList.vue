@@ -14,7 +14,7 @@
                             v-bind:key="filter.id">
                         </GameFilterWrapper>
                     </md-tab>
-                    <md-tab id="results" md-label="Results" class="md-layout md-gutter md-alignment-center">
+                    <md-tab id="results" :md-label="cache.gameList.label" class="md-layout md-gutter md-alignment-center">
                         <GameTile 
                             v-for="game in cache.gameList.games"
                             v-bind:game="game"

@@ -6,7 +6,8 @@ export default class GameListContainer {
         this.allGames = []
         this.filters = []
         this.filterMap = new Map();
-        this.addFilter(new PlaytimeFilter())
+        this.addFilter(new PlaytimeFilter(this))
+        this.label = "... results"
     }
 
     setGames(allGames){
@@ -39,7 +40,7 @@ export default class GameListContainer {
             if (pass){
                 this.games.push(game)
             }
-        }
-        
+        }  
+        this.label = this.games.length +  " results"      
     }
 }
