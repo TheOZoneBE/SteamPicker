@@ -14,7 +14,7 @@
         <div class="md-layout-item md-small-size-33 md-medium-size-30 md-large-size-25">
           <md-field>
               <label>time</label>
-              <md-input v-model="type"></md-input>
+              <md-input v-model="time" name="time" id="time"></md-input>
           </md-field>
         </div>
 
@@ -33,7 +33,14 @@
 
 <script>
 export default {
-    props: ['filter']
+    props: ['filter'],
+    data() {
+        return {
+            operator: "greater",
+            time: 0,
+            timeunit: "minutes"
+        }
+    }
 }
 
 </script>

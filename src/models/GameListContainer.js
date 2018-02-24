@@ -1,8 +1,12 @@
+import PlaytimeFilter from './filters/PlaytimeFilter.js'
+
 export default class GameListContainer {
     constructor(){
         this.games = []
         this.allGames = []
-        this.filters = new Map();
+        this.filters = []
+        this.filterMap = new Map();
+        this.addFilter(new PlaytimeFilter())
     }
 
     setGames(allGames){
@@ -11,18 +15,22 @@ export default class GameListContainer {
     }
 
     addFilter(filter){
-        this.filters.set(filter.name, filter)
+        this.filterMap.set(filter.name, filter)
+        this.filters.push(filter);
+        this.updateGames();
     }
 
     removeFilter(filter){
-        this.filters.delete(filter.name)        
+        this.filterMap.delete(filter.name)   
+        this.filters.slice(filter);
+        this.updateGames();  
     }
 
     updateGames(){
         this.games = []
         for(let game of this.allGames){
             let pass = true;
-            for(let filter of this.filters.values()){
+            for(let filter of this.filterMap.values()){
                 if (!filter.pass(game)){
                     pass = false;
                     break;

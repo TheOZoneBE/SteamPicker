@@ -1,5 +1,5 @@
 export default class GameFilter {
-    constructor(name){
-        this.name = name;
+    constructor(type){
+        this.type = type;
     }
 }
