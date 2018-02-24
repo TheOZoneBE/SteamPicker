@@ -10,7 +10,7 @@
     "Tool"
   ],
   "dependencies": {
-    "electron-builder": "^19.49.0",
+    "electron-builder": "^20.2.0",
     "electron-webpack": "^1.11.0",
     "vue": "^2.5.11",
     "vue-material": "^1.0.0-beta-7"
@@ -40,13 +40,13 @@
     "file-loader": "^1.1.4",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
-    "vue-loader": "^13.0.5",
+    "vue-loader": "^14.1.1",
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1"
   },
   "electronWebpack": {
-    "commonSourceDirectory": "src",  
+    "commonSourceDirectory": "src",
     "main": {
       "sourceDirectory": "src",
       "webpackConfig": "webpack.config.js"
