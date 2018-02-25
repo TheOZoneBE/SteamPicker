@@ -16,6 +16,7 @@ export default class CacheManager {
     }
 
     startup(){
+        console.log(url)
         this.gameList = new GameListContainer();
         if (fs.existsSync(path.join(os.homedir(), '.steampicker/'))){
             

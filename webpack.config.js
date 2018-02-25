@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+const DotenvPlugin = require('webpack-dotenv-plugin');
 
 module.exports = {
     entry: "./src/index.js",
@@ -105,6 +106,10 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
+    }),
+    new DotenvPlugin({
+      sample: './.env.default',
+      path: './.env'
     })
   ])
 }

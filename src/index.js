@@ -1,7 +1,5 @@
 import {app, BrowserWindow} from 'electron'
 
-
-
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Keep a global reference of the window object, if you don't, the window will
